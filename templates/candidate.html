@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}  
+{% block title %}Flasky{% endblock %}
+
+{% block body %}
+
+<body>
+
+<form action="/candidate" autocomplete="on" method="POST" onSubmit="return generateString()">
+
+<table>
+  <tr>
+    <td>{{ wtf.form_field(form.jobtype, id="jobtype") }}</td>
+    <td>{{ wtf.form_field(form.companytype, id="companytype") }}</td>
+    <td>{{ wtf.form_field(form.companyculture, id="companyculture") }}</td>
+    <td>{{ wtf.form_field(form.locationcity, placeholder='Nearest City', size=20, id="locationcity") }}</td>
+    <td>{{ wtf.form_field(form.salary, id="salary") }}</td>
+    <td>{{ wtf.form_field(form.skills, placeholder='Skills', size=10, id="skills") }}</td>
+    <td>{{ wtf.form_field(form.experience, placeholder='Experience', id="experience") }}</td>
+    <td>{{ wtf.form_field(form.reference, placeholder='Your reference', id="reference") }}</td>
+  </tr>
+  <tr>
+    <td><input id="candidate_submit" value="Generate String" type="submit"></td>
+  </tr>
+</table>
+
+</form>
+<br>
+<span id="genStr"></span>
+
+<script>
+  function generateString() {
+    var jobtype = $("#jobtype").val();
+    var companytype = $("#companytype").val();
+    var companyculture = $("#companyculture").val();
+    var locationcity = $("#locationcity").val();
+    var salary = $("#salary").val();
+    var skills = $("#skills").val();
+    var experience = $("#experience").val();
+    var reference = $("#reference").val();
+
+    var genStr = $("#genStr").html(jobtype 
+                                 + companytype 
+                                 + companyculture 
+                                 + locationcity 
+                                 + salary 
+                                 + skills 
+                                 + experience 
+                                 + reference);
+
+    return false;
+
+  }
+</script>
+
+{% endblock %}

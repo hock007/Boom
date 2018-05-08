@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% import "bootstrap/wtf.html" as wtf %}  
+{% block title %}Flasky{% endblock %}
+
+{% block body %}
+
+<body>
+
+<form action="/role" autocomplete="on" method="POST" onSubmit="return generateString()">
+
+<table>
+  <tr>
+    <td>{{ wtf.form_field(form.jobtitle, placeholder='Job Title', size=10, id="jobtitle" ) }}</td>
+    <td>{{ wtf.form_field(form.jobtype, id="jobtype") }}</td>
+    <td>{{ wtf.form_field(form.companytype, id="companytype") }}</td>
+    <td>{{ wtf.form_field(form.companyculture, id="companyculture") }}</td>
+    <td>{{ wtf.form_field(form.locationcity, placeholder='Nearest City', size=8, id="locationcity") }}</td>
+    <td>{{ wtf.form_field(form.salary, id="salary") }}</td>
+    <td>{{ wtf.form_field(form.skills, placeholder='Skills', size=4, id="skills") }}</td>
+    <td>{{ wtf.form_field(form.experience, placeholder='Experience', id="experience") }}</td>
+    <td>{{ wtf.form_field(form.reference, placeholder='Your reference', size=10, id="reference") }}</td>
+  </tr>
+</table>
+    <align="right"><input id="role_submit" value="Generate String" type="submit" >
+
+
+</form>
+
+<br>
+<center><h5><b>
+<span id="genStr"></span>
+</b></h5>
+</center>
+<center><h6><b>
+<span id="emailStr"></span>
+</b></h6>
+</center>
+<script>
+
+function generateString() {
+
+    var jobtitle = $("#jobtitle").val();
+    var jobtype = $("#jobtype").val();
+    var companytype = $("#companytype").val();
+    var companyculture = $("#companyculture").val();
+    var locationcity = $("#locationcity").val();
+    var salary = $("#salary").val();
+    var skills = $("#skills").val();
+    var experience = $("#experience").val();
+    var reference = $("#reference").val();
+
+    $("#genStr").html("[ " + jobtitle + " ]" +
+                                   "[ " + jobtype + " ]" +
+                                   "[ " + companytype + " ]" +
+                                   "[ " + companyculture + " ]" +
+                                   "[ " + locationcity + " ]" +
+                                   "[ " + skills + " ]" +
+                                   "[ " + reference + " ]");
+
+    $("#emailStr").html("email this string to role@sargon.com, add it to the subject line.");
+
+    return false;
+  }
+</script>
+
+{% endblock %}
